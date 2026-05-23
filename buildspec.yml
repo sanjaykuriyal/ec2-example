@@ -7,6 +7,10 @@ env:
     IMAGE_TAG: latest
 
 phases:
+  install:
+    runtime-versions:
+      java: corretto17
+
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
@@ -16,16 +20,20 @@ phases:
 
   build:
     commands:
-      - echo Build started
+      - echo Build started on `date`
       - mvn clean package
+      - echo Listing files
+      - ls -la
+      - echo Building Docker image
       - docker build -t $IMAGE_REPO_NAME .
       - docker tag $IMAGE_REPO_NAME:latest $REPOSITORY_URI:$IMAGE_TAG
+      - docker images
 
   post_build:
     commands:
       - echo Pushing Docker image...
       - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - echo Build completed
+      - echo Build completed on `date`
 
 artifacts:
   files:
