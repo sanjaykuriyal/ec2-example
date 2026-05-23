@@ -13,7 +13,7 @@ public class HelloController {
 
         Map<String, Object> response = new HashMap<>();
 
-        response.put("message", "Hello from Spring Boot");
+        response.put("message", "Hello from Spring Boot- Sanjay First app");
         response.put("status", "success");
         response.put("timestamp", System.currentTimeMillis());
 
