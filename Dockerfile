@@ -4,7 +4,6 @@ USER root
 
 RUN apt-get update && apt-get install -y \
     docker.io \
-    awscli \
-    && apt-get clean
+    awscli
 
 USER jenkins
